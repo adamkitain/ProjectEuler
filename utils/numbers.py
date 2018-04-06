@@ -1,19 +1,4 @@
-def generate_primes(max):
-    count = 2
-    primes = []
-    while count < max:
-        isprime = True
-
-        for x in primes:
-            if count % x == 0:
-                isprime = False
-                break
-
-        if isprime:
-            print count
-            primes.append(count)
-
-        count += 1
+import math
 
 
 def gen_primes(n):
@@ -49,3 +34,27 @@ def gen_primes(n):
             del D[q]
 
         q += 1
+
+def triangle_nums(n):
+    num = 1
+    while num < n:
+        yield sum(range(num+1))
+        num += 1
+
+def get_divisors(num):
+    divisors = []
+    for i in range(1,int(num/2)+1):
+        if num % i == 0:
+            divisors.append(i)
+    divisors.append(num)
+    return divisors
+
+def get_prime_factors(num):
+    factors = []
+    primes = gen_primes(num+1)
+    while num != 1:
+        p = primes.next()
+        while num % p == 0:
+            num /= p
+            factors.append(p)
+    return factors
